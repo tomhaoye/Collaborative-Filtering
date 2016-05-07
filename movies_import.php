@@ -21,10 +21,11 @@ mysql_query($user_sql);
 
 $item_sql1 = 'insert ml_items(id,title) values ';
 foreach ($items as $item) {
+    $item = iconv('iso-8859-1', 'utf-8',  $item);
     $item = explode('|', $item);
     $item_id = $item[0];
     $item_title = $item[1];
-    $i_sql = '(' . $item_id . ',' . "'" . $item_title . "'" . ')';
+    $i_sql = "(" . $item_id . "," . '"' . $item_title . '"' . ")";
     $item_sql = $item_sql1 . $i_sql;
     mysql_query($item_sql);
 }
