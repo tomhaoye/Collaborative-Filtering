@@ -26,7 +26,7 @@ for ($i = $start_col; $i < $col_num; $i++) {
     }
 }
 if (!count($never) || $predict) {
-    //如果都接触过则进行对比预测
+    //如果都接触过则赋值进行对比预测
     $never = [5, 6, 7];
 }
 print_r($never);
