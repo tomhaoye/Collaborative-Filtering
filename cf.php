@@ -19,14 +19,24 @@ $start_col = 2;
 $user_index = 4;
 //预测设置
 $predict = true;
+
 //查找没有接触的商品
-for ($i = $start_col; $i < $col_num; $i++) {
-    if (empty($table[$user_index][$i])) {
+/**
+ * never作为的是待预测的项目
+ * 假如需要进行评估，对所有项进行预测
+ */
+if ($predict) {
+    for ($i = $start_col; $i < $col_num; $i++) {
         $never[] = $i;
     }
+} else {
+    for ($i = $start_col; $i < $col_num; $i++) {
+        if (empty($table[$user_index][$i])) {
+            $never[] = $i;
+        }
+    }
 }
-if (!count($never) || $predict) {
-    //如果都接触过则赋值进行对比预测
+if (!count($never)) {
     $never = [5, 6, 7];
 }
 print_r($never);
