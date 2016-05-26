@@ -1,8 +1,9 @@
 <?php
 include_once('db_connect.php');
 
-$user_id = 10;
+$user_id = 1;
 $per_den = 15;
+$arr = [];
 
 $avg_sql = 'select AVG(rating),user_id from ml_data group by user_id ORDER BY AVG(rating)';
 $var_sql = 'select VARIANCE(rating),user_id from ml_data group by user_id order by VARIANCE(rating)';
@@ -18,7 +19,7 @@ while ($row = mysql_fetch_row($rs2)) {
 function getNB()
 {
     $nb1 = $nb2 = [];
-    global $avg, $var, $user_id, $per_den;
+    global $arr, $avg, $var, $user_id, $per_den;
     foreach ($avg as $key => $item) {
         if (abs($item - $avg[$user_id]) < ($avg[$user_id] / $per_den)) {
             $nb1[$key] = $item;
@@ -33,12 +34,12 @@ function getNB()
     if (count($arr) < 10 && $per_den) {
         --$per_den;
         getNB();
-    } else {
-        print_r($arr);
+    } elseif (count($arr) > 20) {
+        ++$per_den;
+        getNB();
     }
 }
 
 getNB();
-
 
 
