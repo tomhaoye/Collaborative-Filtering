@@ -51,6 +51,7 @@ print_r($never);
  */
 $cos = [];
 foreach ($arr as $key => $item) {
+    if($key == $user_id) continue;
     $numerator = 0;
     $denominator1 = 0;
     $denominator2 = 0;
