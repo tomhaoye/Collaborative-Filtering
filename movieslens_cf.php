@@ -5,17 +5,17 @@ include('variance.php');
 
 $u_sql = 'select count(0) from ml_users';
 $i_sql = 'select count(0) from ml_items';
-$u_r = mysql_query($u_sql);
-$i_r = mysql_query($i_sql);
-$u_c = mysql_fetch_row($u_r)[0];
-$i_c = mysql_fetch_row($i_r)[0];
+$u_r = mysqli_query($link, $u_sql);
+$i_r = mysqli_query($link, $i_sql);
+$u_c = mysqli_fetch_row($u_r)[0];
+$i_c = mysqli_fetch_row($i_r)[0];
 
 //构建矩阵
 foreach ($arr as $key => $item) {
     for ($j = 1; $j <= $i_c; $j++) {
         $sql = 'select * from ml_data where user_id = ' . $key . ' and item_id = ' . $j;
-        $resource = mysql_query($sql);
-        if ($row = mysql_fetch_assoc($resource)) {
+        $resource = mysqli_query($link,$sql);
+        if ($row = mysqli_fetch_assoc($resource)) {
             $de_array[$key][$j] = $row['rating'];
         } else {
             $de_array[$key][$j] = null;
@@ -51,7 +51,7 @@ print_r($never);
  */
 $cos = [];
 foreach ($arr as $key => $item) {
-    if($key == $user_id) continue;
+    if ($key == $user_id) continue;
     $numerator = 0;
     $denominator1 = 0;
     $denominator2 = 0;

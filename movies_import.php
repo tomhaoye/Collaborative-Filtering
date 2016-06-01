@@ -16,18 +16,18 @@ foreach ($users as $item) {
 }
 $user_sql2 = implode(',', $u_sql);
 $user_sql = $user_sql1 . $user_sql2;
-mysql_query($user_sql);
+mysqli_query($link, $user_sql);
 
 
 $item_sql1 = 'insert ml_items(id,title) values ';
 foreach ($items as $item) {
-    $item = iconv('iso-8859-1', 'utf-8',  $item);
+    $item = iconv('iso-8859-1', 'utf-8', $item);
     $item = explode('|', $item);
     $item_id = $item[0];
     $item_title = $item[1];
     $i_sql = "(" . $item_id . "," . '"' . $item_title . '"' . ")";
     $item_sql = $item_sql1 . $i_sql;
-    mysql_query($item_sql);
+    mysqli_query($link, $item_sql);
 }
 
 $data_sql1 = 'insert ml_data(user_id,item_id,rating) values ';
@@ -38,6 +38,6 @@ foreach ($data as $item) {
     $data_rating = $item[2];
     $d_sql = '(' . $data_user_id . ',' . $data_item_id . ',' . $data_rating . ')';
     $data_sql = $data_sql1 . $d_sql;
-    mysql_query($data_sql);
+    mysqli_query($link, $data_sql);
 }
 

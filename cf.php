@@ -3,8 +3,8 @@ include_once('db_connect.php');
 require('ShellsSort.php');
 
 $sql = "select * from scores";
-$result = mysql_query($sql);
-while ($row = mysql_fetch_row($result)) {
+$result = mysqli_query($link,$sql);
+while ($row = mysqli_fetch_row($result)) {
     $table[] = $row;
 }
 print_r($table);
@@ -12,7 +12,7 @@ print_r($table);
 //用户数量
 $usr_count = count($table);
 //矩阵列数
-$col_num = mysql_num_fields($result);
+$col_num = mysqli_num_fields($result);
 //项目开始列
 $start_col = 2;
 //用户id－1＝下标

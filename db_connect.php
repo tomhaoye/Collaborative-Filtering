@@ -1,10 +1,5 @@
 <?php
-$link = mysql_connect("127.0.0.1", "root", "");
-if($link)
-{
-    mysql_select_db("cf",$link);
-}
-else
-{
-    die('Could not connect: '.mysql_error());
+$link = mysqli_connect("127.0.0.1", "root", "", "cf");
+if (!$link) {
+    die("连接失败" . mysqli_connect_error());
 }
