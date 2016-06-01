@@ -41,5 +41,6 @@ function getNB()
 }
 
 getNB();
-print_r($arr);
+
+include('time_help.php');
 

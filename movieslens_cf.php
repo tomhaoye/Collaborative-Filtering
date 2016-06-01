@@ -1,7 +1,7 @@
 <?php
 require('ShellsSort.php');
 include_once('db_connect.php');
-include('variance.php');
+include('alls.php');
 
 $u_sql = 'select count(0) from ml_users';
 $i_sql = 'select count(0) from ml_items';
@@ -14,14 +14,16 @@ $i_c = mysqli_fetch_row($i_r)[0];
 foreach ($arr as $key => $item) {
     for ($j = 1; $j <= $i_c; $j++) {
         $sql = 'select * from ml_data where user_id = ' . $key . ' and item_id = ' . $j;
-        $resource = mysqli_query($link,$sql);
+        $resource = mysqli_query($link, $sql);
         if ($row = mysqli_fetch_assoc($resource)) {
             $de_array[$key][$j] = $row['rating'];
         } else {
             $de_array[$key][$j] = null;
         }
     }
+    include('time_help.php');
 }
+
 
 //项目开始列
 $start_col = 1;
@@ -119,3 +121,5 @@ foreach ($never as $key => $value) {
 }
 echo '预测评分';
 print_r($pre_score);
+
+
