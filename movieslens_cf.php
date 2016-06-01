@@ -21,8 +21,8 @@ foreach ($arr as $key => $item) {
             $de_array[$key][$j] = null;
         }
     }
-    include('time_help.php');
 }
+include('time_help.php');
 
 
 //项目开始列
@@ -36,17 +36,16 @@ $predict = true;
 //查找没有接触的项目
 if ($predict) {
     //预测评分
-    for ($i = 1; $i < 1600; $i++) {
-        $never[] = $i;
+    for ($i = $start_col; $i < $i_c; $i++) {
+        $never[$i] = $i;
     }
 } else {
     for ($j = $start_col; $j < $i_c; $j++) {
         if (empty($de_array[$user_id][$j])) {
-            $never[] = $j;
+            $never[$j] = $j;
         }
     }
 }
-print_r($never);
 
 /**
  * 根据余弦公式, 夹角余弦 = 向量点积/ (向量长度的叉积) = ( x1x2 + y1y2 + z1z2) / ( 跟号(x1平方+y1平方+z1平方 ) x 跟号(x2平方+y2平方+z2平方 ) )
