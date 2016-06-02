@@ -6,9 +6,13 @@
   * u.data
   * u.item
   * u.user
+ * resultSet
+  * log*
+ * alls.php 
  * cf.php
- * da_connect.php
- * log
+ * db_connect.php
  * movies_import.php
  * movieslens_cf.php
  * ShellsSort.php 
+ * time_help.php
+ * variance.php
