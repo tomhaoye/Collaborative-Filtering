@@ -1,7 +1,7 @@
 <?php
 require('ShellsSort.php');
 include_once('db_connect.php');
-include('alls.php');
+include('variance.php');
 
 $u_sql = 'select count(0) from ml_users';
 $i_sql = 'select count(0) from ml_items';
