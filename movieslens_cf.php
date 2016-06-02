@@ -121,4 +121,28 @@ foreach ($never as $key => $value) {
 echo '预测评分';
 print_r($pre_score);
 
+//计算MAE
+function MAE($num, $step, $end)
+{
+    global $de_array, $user_id, $pre_score;
+    $u = 0;
+    $d = 0;
+    foreach ($de_array[$user_id] as $key => $item) {
+        if (!empty($item) && !empty($pre_score[$key])) {
+            $u += abs($item - $pre_score[$key]);
+            ++$d;
+        }
+        if ($d == $num) {
+            echo 'MAE:';
+            print_r($u / $d);
+            break;
+        }
+    }
+    if ($num <= $end) {
+        $num += $step;
+        MAE($num, $step, $end);
+    }
+}
+
+MAE(10, 10, 100);
 
