@@ -10,6 +10,7 @@ $i_r = mysqli_query($link, $i_sql);
 $u_c = mysqli_fetch_row($u_r)[0];
 $i_c = mysqli_fetch_row($i_r)[0];
 
+
 //构建矩阵
 foreach ($arr as $key => $item) {
     for ($j = 1; $j <= $i_c; $j++) {
@@ -22,6 +23,8 @@ foreach ($arr as $key => $item) {
         }
     }
 }
+
+
 include('time_help.php');
 
 
