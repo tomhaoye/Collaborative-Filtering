@@ -1,8 +1,6 @@
 # Collaborative Filtering algorithm
 
  * dataDir
-  * cf_full.sql
-  * cf_sparse.sql
   * u.data
   * u.item
   * u.user
